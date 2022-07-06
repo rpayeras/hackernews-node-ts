@@ -5,9 +5,9 @@ import { context } from './context'
 import { schema } from './schema'
 export const server = new ApolloServer({
   schema,
-  context,
-  introspection: true,
-  plugins: [ApolloServerPluginLandingPageLocalDefault()]
+  context
+  // introspection: true,
+  // plugins: [ApolloServerPluginLandingPageLocalDefault()]
 })
 
 const port = process.env.PORT || 3000
