@@ -1,7 +1,6 @@
 import { extendType, objectType, nonNull, stringArg } from 'nexus'
 import * as bcrypt from 'bcryptjs'
 import * as jwt from 'jsonwebtoken'
-
 import { APP_SECRET } from '../utils/auth'
 
 export const AuthPayload = objectType({
@@ -41,7 +40,7 @@ export const AuthMutation = extendType({
           throw new Error('Invalid password')
         }
 
-        const token = jwt.sign({ userId: user.id }, APP_SECRET)
+        const token: string = jwt.sign({ userId: user.id }, APP_SECRET as jwt.Secret)
 
         return {
           token,
@@ -65,7 +64,7 @@ export const AuthMutation = extendType({
           data: { email, name, password }
         })
 
-        const token = jwt.sign({ userId: user.id }, APP_SECRET)
+        const token = jwt.sign({ userId: user.id }, APP_SECRET as jwt.Secret)
 
         return {
           token,
