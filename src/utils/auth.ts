@@ -1,9 +1,9 @@
-import * as jwt from 'jsonwebtoken'
+import { JwtPayload, verify } from 'jsonwebtoken'
 
-export const APP_SECRET = process.env.APP_SECRET
+export const APP_SECRET = process.env.APP_SECRET || ''
 
-export interface AuthTokenPayload {
-  userId: number
+export interface AuthTokenPayload extends JwtPayload{
+  userId?: number
 }
 
 export function decodeAuthHeader (authHeader: String): AuthTokenPayload {
@@ -13,5 +13,5 @@ export function decodeAuthHeader (authHeader: String): AuthTokenPayload {
     throw new Error('No token found')
   }
 
-  return jwt.verify(token, APP_SECRET) as AuthTokenPayload
+  return verify(token, APP_SECRET) as AuthTokenPayload
 }
