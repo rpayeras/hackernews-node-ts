@@ -2,8 +2,8 @@ import * as dotenv from 'dotenv'
 
 import { ApolloServer } from 'apollo-server'
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
-import { context } from './context'
 
+import { context } from './context'
 import { schema } from './schema'
 
 dotenv.config()
